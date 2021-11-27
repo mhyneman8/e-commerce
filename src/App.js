@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import { Routes, Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
 import AddProduct from './components/AddProduct';
 import Cart from './components/Cart';
@@ -7,6 +7,10 @@ import Login from './components/Login';
 import ProductList from './components/ProductList';
 
 import Context from './Context';
+
+// const routerRef = React.forwardRef((props, ref) => {
+//   return <input ref={ref}/>;
+// })
 
 export default class App extends Component {
   constructor(props) {
@@ -43,7 +47,7 @@ export default class App extends Component {
                 <b className="navbar-item is-size-4">ecommerce</b>
                 <label
                   role="button"
-                  class="navbar-burger burger"
+                  className="navbar-burger burger"
                   aria-label="menu"
                   aria-expanded="false"
                   data-target="navbarBasicExample"
@@ -60,7 +64,7 @@ export default class App extends Component {
               <div className={`navbar-menu ${
                 this.state.showMenu ? "is-active" : ""
               }`}>
-                <Link to="/products" className="navbar-item">
+                <Link to="/productList" className="navbar-item">
                   Products
                 </Link>
                 {this.state.user && this.state.user.accessLevel <  1 && (
@@ -90,13 +94,13 @@ export default class App extends Component {
                 
               </div>
             </nav>
-            <Switch>
-              <Route exact path="/" component={ProductList} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/cart" component={Cart} />
-              <Route exact path="/add-product" component={AddProduct} />
-              <Route exact path="/products" component={ProductList} />
-            </Switch>
+            <Routes>
+              <Route exact path="/" component={<ProductList/>} />
+              <Route exact path="/login" component={<Login/>} />
+              <Route exact path="/cart" component={<Cart/>} />
+              <Route exact path="/add-product" component={<AddProduct/>} />
+              <Route exact path="/products" component={<ProductList/>} />
+            </Routes>
           </div>
         </Router>
       </Context.Provider>
