@@ -10,9 +10,9 @@ import Context from './Context';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
-// const routerRef = React.forwardRef((props, ref) => {
-//   return <input ref={ref}/>;
-// })
+const routerRef = React.forwardRef((props, ref) => {
+  return <input ref={ref}/>;
+})
 
 export default class App extends Component {
   constructor(props) {
@@ -102,7 +102,7 @@ export default class App extends Component {
               <div className={`navbar-menu ${
                 this.state.showMenu ? "is-active" : ""
               }`}>
-                <Link to="/productList" className="navbar-item">
+                <Link to="/products" className="navbar-item">
                   Products
                 </Link>
                 {this.state.user && this.state.user.accessLevel <  1 && (
